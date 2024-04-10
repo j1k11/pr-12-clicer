@@ -1,0 +1,78 @@
+#:set color_btn_txt_d "#487282"
+#:set color_btn_bg "#CDB148"
+#:set color_btn_bg_pr "#EFEAD8"
+#:set color_bg "#9D3763"
+#:set color_bg_a "#12242B"
+#:set color_bg_b "#ac3939"
+#:set color_a "#ac3939"
+
+
+<ButtonMenu@Button>:
+    size_hint_y: 0.3
+    font_size: "30sp"
+    color: color_btn_txt_d
+    background_color: color_btn_bg
+    background_normal: ''
+    on_release: self.background_color = color_btn_bg
+    background_down: ''
+    on_press: self.background_color = color_btn_bg_pr
+    font_name: "assets/Honk-Regular-VariableFont_MORF SHLN.ttf"
+
+
+
+<MenuScreen>:
+    canvas.before:
+        Color:
+            rgba: rgba("#EFEAD8")
+
+        Rectangle:
+            pos:self.pos
+            size:self.size
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '20dp'
+       
+        Label:
+            text: 'game of planet'
+            font_name: 'assets/Honk-Regular-VariableFont_MORF SHLN.ttf'
+            font_size: '30dp'
+            color: 2, 1, 2, 1
+            size_hint_y: 0.2 
+        Image:
+            source: 'assets/images/6.png'
+            size_hint_y: .9
+            allow_stretch: True
+        
+        Widget:
+            size_hint_y: 0.3
+            
+        ButtonMenu:
+            text: "Start"
+            on_press: root.manager.current = 'game'
+        ButtonMenu:
+            text: "Lider Board"
+        ButtonMenu:
+            text: "Setting"
+
+<GameScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: 0.1
+            Label:
+                text: "score:" + str(root.points)
+                font_name: 'assets/Honk-Regular-VariableFont_MORF SHLN.ttf'
+                font_size: '30sp'
+                color: color_a 
+        FloatLayout:
+            size_hint_y: 0.8
+            Planet:
+                id: planet
+        BoxLayout:
+            size_hint_y: 0.1
+<Planet>
+    allow_stretch: True
+    size_hint: None, None
+    size: '200dp', "200dp"
+    center: self.parent.center
